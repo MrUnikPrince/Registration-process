@@ -50,4 +50,5 @@ async function displayRandomMeals() {
     });
 }
 
-displayRandomMeals();
+// Load all meals when the page is first loaded
+document.addEventListener('DOMContentLoaded', displayRandomMeals);
