@@ -52,8 +52,46 @@
         margin-left: 10px;
 }
 
-/* random meals  */
+/* Searched meals  */
+.search-result{
+    display: flex;
+    border: 2px solid green;
+    padding: 2%;
+    margin: 2%;
+}
+#searchedMeal{
+    width: 69%;
+    border: 2px solid red;
+    display: flex;
+    margin-left: 2%;
+}
+#favoriteMeals{
+    margin-left: 1%;
+    width: 29%;
+    border: 2px solid red;
+}
+.favoriteMealsList{
+    margin: 5px 10px 5px 6%;
+    border: 2px solid red;
+}
+.favoriteMealsList ul {
+    list-style: none;
+}
+.favoriteMealsList ul li {
+    margin: 5px;
+    font-size: 1 em;
+}
+.favoriteMealsList ul li a {
+    text-decoration: none;
+    color: black;
+}
+.favoriteMealsList ul li a:hover {
+    color: blue;
+    text-decoration: underline;
+}
 
+
+/* random meals  */
 .random-meals{
     border: 3px solid red;
     display: flex;
@@ -62,13 +100,13 @@
 }
 .random{
     display: flex;
-    /* flex-direction: column; */
+    margin: 2%;
     justify-content: flex-start;
-    /* align-items: center; */
 }
 .meal-img img{
     width: 200px;
     height: 200px;
+    border-radius: 50%;
 }
 
 .meal-details {
@@ -77,4 +115,9 @@
     justify-content: flex-start;
     align-items:flex-start;
     margin: 15px;
+}
+
+.meal-title{
+    font-weight: bold;
+    font-size: 1.5rem;
 }
