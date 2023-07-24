@@ -1,59 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meal</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container" id="container">
+  <div class="container" id="container">
 
-        <!-- Title of the page -->
-        <div class="title">
-            <h1><u>Meal APP</u></h1>
-        </div>
-
-        <!-- Search Bar -->
-        <div class="searchBar">
-            <input type="text" name="search" id="search">
-            <button type="submit" id="submit">Search</button>
-        </div>
-
-        <!-- Searched meals result -->
-        <div class="search-result">
-            <section id="searchedMeal"> 
-                <div class="meal-img">
-                    <img src="./Good_Food_Display_-_NCI_Visuals_Online.jpg" alt="">
-                </div>
-                <div class="meal-details">
-                    <p class="meal-title">Meal name</p>
-                    <p>meal type</p>
-                    <p>location</p>
-                    <p> Meal details <a href="">read more</a></p>
-                </div>
-            </section>
-            <section id="favoriteMeals">
-                <div class="title">Favorite Meals</div>
-                <div class="favoriteMealsList">
-                    <ul>
-                        <li> <a href="">meal 1</a></li>
-                        <li><a href="">meal 2</a></li>
-                        <li> <a href="">meal 3</a></li>
-                    </ul>
-                </div>
-            </section>
-        </div>
-
-        <!-- Show some random meals -->
-        <div class="random-meals" id="randomMealContainer">
-            
-        </div>
-        <!-- footer -->
-        <footer>
-            <p>All right reserved</p>
-        </footer>
+    <!-- Title of the page -->
+    <div class="title">
+      <h1><u>Meal APP</u></h1>
     </div>
-    <script src="app.js"></script>
+
+    <!-- Search Bar -->
+    <div class="searchBar">
+      <input type="text" name="search" id="search">
+      <button type="submit" id="submit">Search</button>
+    </div>
+
+    <!-- Searched meals result -->
+    <div class="search-result">
+      <section id="searchedMeal">
+        <div class="meal-img">
+          <img src="./Good_Food_Display_-_NCI_Visuals_Online.jpg" alt="">
+        </div>
+        <div class="meal-details">
+          <p class="meal-title">Meal name</p>
+          <p>meal type</p>
+          <p>location</p>
+          <p> Meal details <a href="">read more</a></p>
+        </div>
+      </section>
+      <section id="favoriteMeals">
+        <div class="title">Favorite Meals</div>
+        <div class="favoriteMealsList">
+          <ul id="favoriteMealsList">
+            <!-- Favorite meals will be added here dynamically -->
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Show some random meals -->
+    <div class="random-meals" id="randomMealContainer">
+      <!-- Random meals will be added here dynamically -->
+    </div>
+    <!-- Search Suggestions -->
+    <ul id="suggestions" class="search-suggestions">
+      <!-- Search suggestions will be added here dynamically -->
+    </ul>
+
+    <!-- footer -->
+    <footer>
+      <p>All right reserved</p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
 </body>
+
 </html>

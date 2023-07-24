@@ -1,16 +1,18 @@
 const container = document.getElementById('container');
-const searchInput = document.getElementById('searxh');
+const searchInput = document.getElementById('search');
 const searchButton = document.getElementById('submit');
 const randomMealContainer = document.getElementById('randomMealContainer');
 const favoriteMealsContainer = document.getElementById('favoriteMeals');
 const randomMealCard = document.querySelector(".randomMealCard");
+const searchedMeal = document.getElementById('searchedMeal');
+
 const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
 
 // Function to get meal details by Search
 async function getMeal(mealName) {
     try {
-        const response = await fetch(url + mealName);
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(mealName)}`);
         const data = await response.json();
         return data.meals ? data.meals[0] : null;
     } catch (err) {
@@ -21,9 +23,9 @@ async function getMeal(mealName) {
 
 // function to add meal to favorites and local storage
 function addToFavorites(meal) {
-    // check if the meal is alreadey in favorites (based on ita IS)
+    // check if the meal is alreadey in favorites (based on ita ID)
     var favorites = getFavoritesFromLocalStorage();
-    if (!favorites.some((fav) => { fav.idMeal === meal.idMeal })) {
+    if (!favorites.some((fav) => fav.idMeal === meal.idMeal )) {
         favorites.push(meal);
         updateLocalStorage(favorites);
         displayFavoriteMeal();
@@ -58,12 +60,8 @@ function displayFavoriteMeal() {
         const mealCard = document.createElement('div');
         mealCard.classList.add('favoriteMealCard');
         mealCard.innerHTML = `
-      <div class="meal-img">
-        <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-      </div>
       <div class="meal-details">
         <p>${meal.strMeal}</p>
-        <p>${meal.strInstructions}</p>
         <button class="deleteBtn" data-meal-id="${meal.idMeal}">Delete</button>
       </div>
     `;
@@ -139,5 +137,42 @@ async function displayRandomMeals() {
 document.addEventListener('DOMContentLoaded', () => {
     displayRandomMeals();
     displayFavoriteMeal();
+});
+
+// add Event Listener to Search Button
+searchButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const mealName = searchInput.value.trim();
+    if (mealName !== '') {
+        const meal = await getMeal(mealName);
+        if (meal) {
+            const mealCard = document.createElement('div');
+            mealCard.classList.add('searchedMealCard');
+            mealCard.innerHTML = `
+        <div class="meal-img">
+          <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+        </div>
+        <div class="meal-details">
+          <p>${meal.strMeal}</p>
+          <p>${meal.strInstructions}</p>
+          <button class="addBtn" data-meal-id="${meal.idMeal}">Add to Favorites</button>
+        </div>
+      `;
+            // Add event listener to "Add to Favorites" button
+            const addBtn = mealCard.querySelector('.addBtn');
+            addBtn.addEventListener('click', async (event) => {
+                addToFavorites(meal);
+                // const mealId = event.target.getAttribute('data-meal-id');
+                // var mealToAdd = await getMeal(mealId);
+                // if (mealToAdd) {
+                //     addToFavorites(mealToAdd);
+                // }
+            });
+            searchedMeal.innerHTML = '';
+            searchedMeal.appendChild(mealCard);
+        } else {
+            searchedMeal.innerHTML = '<p>No results found.</p>';
+        }
+    }
 });
 
