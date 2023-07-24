@@ -54,6 +54,7 @@ function updateLocalStorage(favorites) {
 function displayFavoriteMeal() {
     const favorites = getFavoritesFromLocalStorage();
 
+    // const favoriteMealsList = document.getElementById('favoriteMealsList');
     // clear previous favorite meals
     favoriteMealsContainer.innerHTML = '';
     favorites.forEach((meal) => {
@@ -170,9 +171,47 @@ searchButton.addEventListener('click', async (event) => {
             });
             searchedMeal.innerHTML = '';
             searchedMeal.appendChild(mealCard);
+            searchInput.value = ''; // Clear the search input after displaying the search results
         } else {
             searchedMeal.innerHTML = '<p>No results found.</p>';
         }
     }
 });
 
+// Add event listener to search input for search suggestions
+searchInput.addEventListener('input', async () => {
+    const searchQuery = searchInput.value.trim();
+    if (searchQuery !== '') {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(searchQuery)}`);
+        const data = await response.json();
+        const suggestions = data.meals ? data.meals : [];
+        showSearchSuggestions(suggestions);
+    } else {
+        const suggestionList = document.getElementById('suggestions');
+        suggestionList.innerHTML = '';
+    }
+});
+
+// Function to provide search suggestions based on API data
+function showSearchSuggestions(suggestions) {
+    const suggestionList = document.getElementById('suggestions');
+    if (suggestions.length === 0) {
+        suggestionList.style.display = 'none'; // Hide suggestions when no results found
+        return;
+      }
+    suggestionList.innerHTML = '';
+  
+    suggestions.forEach((suggestion) => {
+        const suggestionItem = document.createElement('li');
+        suggestionItem.textContent = suggestion.strMeal;
+        suggestionItem.addEventListener('click', () => {
+            searchInput.value = suggestion.strMeal;
+            // Call the click event of the searchButton directly to trigger the search
+            searchButton.click();
+            suggestionList.style.display = 'none'; // Hide suggestions when a suggestion is clicked        
+        });
+  
+        suggestionList.appendChild(suggestionItem);
+    });
+    suggestionList.style.display = 'block'; // Show suggestions when there are results
+}
