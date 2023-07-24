@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container">
 
         <!-- Title of the page -->
         <div class="title">
@@ -46,33 +46,15 @@
         </div>
 
         <!-- Show some random meals -->
-        <div class="random-meals">
-            <div class="random">
+        <div class="random-meals" id="randomMealContainer">
+            <div class="randomMealCard">
                 <div class="meal-img">
-                    <img src="/Good_Food_Display_-_NCI_Visuals_Online.jpg" alt="Random meals">
-                </div>
-                <div class="meal-details">
-                    <p>Meal name</p>
-                    <p> Meal details <a href="">read more</a></p>
-                </div>
-            </div>
-            <div class="random">
-                <div class="meal-img">
-                    <img src="/Good_Food_Display_-_NCI_Visuals_Online.jpg" alt="Random meals">
-                </div>
-                <div class="meal-details">
-                    <p>Meal name</p>
-                    <p> Meal details <a href="">read more</a></p>
-                </div>
-            </div>
-            <div class="random">
-                <div class="meal-img">
-                    <img src="/Good_Food_Display_-_NCI_Visuals_Online.jpg" alt="Random meals">
-                </div>
-                <div class="meal-details">
-                    <p>Meal name</p>
-                    <p> Meal details <a href="">read more</a></p>
-                </div>
+                    <img src="${mealImg}" alt="${mealName}">
+                  </div>
+                  <div class="meal-details">
+                    <p>${mealName}</p>
+                    <p>${mealDetails} <a href="" target="_blank">Read more</a></p>
+                  </div>
             </div>
         </div>
         <!-- footer -->
@@ -80,5 +62,6 @@
             <p>All right reserved</p>
         </footer>
     </div>
+    <script src="app.js"></script>
 </body>
 </html>

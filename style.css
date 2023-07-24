@@ -98,8 +98,9 @@
     justify-content: space-around;
     align-items: center;
 }
-.random{
+.randomMealCard{
     display: flex;
+    flex-wrap: wrap;
     margin: 2%;
     justify-content: flex-start;
 }
