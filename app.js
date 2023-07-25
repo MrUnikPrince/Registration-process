@@ -74,9 +74,36 @@ function displayFavoriteMeal() {
             removeFromfavorites(mealID);
         });
 
+         // Add event listener to display meal details on click
+         mealCard.addEventListener('click', () => {
+            displayMealDetailsPopup(meal);
+        });
         favoriteMealsContainer.appendChild(mealCard);
     });
 }
+
+// display meal details popup 
+function displayMealDetailsPopup(meal) {
+    const popup = document.createElement('div');
+    popup.classList.add('meal-popup');
+    popup.innerHTML = `
+        <div class="popup-content">
+            <h2>${meal.strMeal}</h2>
+            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+            <p>${meal.strInstructions}</p>
+            <button class="closeBtn">Close</button>
+        </div>
+    `;
+
+    // Add event listener to close the popup
+    const closeBtn = popup.querySelector('.closeBtn');
+    closeBtn.addEventListener('click', () => {
+        popup.remove();
+    });
+
+    document.body.appendChild(popup);
+}
+
 
 
 // get random meals 
