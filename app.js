@@ -61,7 +61,7 @@ function displayFavoriteMeal() {
         const mealCard = document.createElement('div');
         mealCard.classList.add('favoriteMealCard');
         mealCard.innerHTML = `
-      <div class="meal-details">
+      <div class="fav-meal-details">
         <p>${meal.strMeal}</p>
         <button class="deleteBtn" data-meal-id="${meal.idMeal}">Delete</button>
       </div>
@@ -118,7 +118,7 @@ async function displayRandomMeals() {
       </div>
       <div class="meal-details">
         <p>${mealName}</p>
-        <p>${mealDetails} <a href="" target="_blank">Read more</a></p>
+        <p>${mealDetails} <a href="meal-details.html?id=${randomMeal.idMeal}" >Read more</a></p>
         <button class="addBtn" data-meal-id="${randomMeal.idMeal}">Add to Favorites</button>
       </div>
     `;
@@ -154,8 +154,9 @@ searchButton.addEventListener('click', async (event) => {
           <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
         </div>
         <div class="meal-details">
-          <p>${meal.strMeal}</p>
+          <p class= "title">${meal.strMeal}</p>
           <p>${meal.strInstructions}</p>
+          <a href="meal-details.html?id=${meal.idMeal}">Read more</a>
           <button class="addBtn" data-meal-id="${meal.idMeal}">Add to Favorites</button>
         </div>
       `;
@@ -163,11 +164,6 @@ searchButton.addEventListener('click', async (event) => {
             const addBtn = mealCard.querySelector('.addBtn');
             addBtn.addEventListener('click', async (event) => {
                 addToFavorites(meal);
-                // const mealId = event.target.getAttribute('data-meal-id');
-                // var mealToAdd = await getMeal(mealId);
-                // if (mealToAdd) {
-                //     addToFavorites(mealToAdd);
-                // }
             });
             searchedMeal.innerHTML = '';
             searchedMeal.appendChild(mealCard);

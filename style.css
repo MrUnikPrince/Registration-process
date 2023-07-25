@@ -54,6 +54,8 @@
 
 /* Searched meals  */
 .search-result{
+    max-height: 60vh;
+
     display: flex;
     border: 2px solid green;
     padding: 2%;
@@ -65,7 +67,6 @@
     display: flex;
     margin-left: 2%;
 }
-
 
 /* random meals  */
 .random-meals{
@@ -106,12 +107,7 @@
     margin: 1%;
     padding: 1%;
 }
-/* .meal-details p:first-child{
-    color: red;
-    font-size: 1.5rem;
-    margin: 1%;
-    padding: 1%;
-} */
+/* Search- suggestions */
 
 .search-suggestions {
     display: none;
@@ -145,3 +141,63 @@
     background-color: #f9f9f9;
   }
   
+  /* searhed output */
+  .searchedMealCard{
+    display: flex;
+    align-items: center;
+  }
+  .searchedMealCard .meal-details .title{
+    font-size: 3rem;
+    font-weight: bolder;
+  }
+  .searchedMealCard .meal-details > p{
+    font-weight: normal;
+    margin-top: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+  /* Add to Favorites button */
+.addBtn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .addBtn:hover {
+    background-color: #45a049;
+  }
+  /* Delete button  */
+.deleteBtn {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .deleteBtn:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* favorite meals  */
+.favorite-meal-container{
+    width: 40%;
+    margin-left: 15px;
+    max-height: 60vh;
+    border: 2px solid green;
+    overflow-y: auto;
+}
+.favoriteMealCard .fav-meal-details{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    align-items: center;
+
+}
